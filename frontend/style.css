@@ -34,10 +34,6 @@ ol li {
 
 .container {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-        "main-photo"
-        "recipe";
     column-gap: 2rem;
     margin: 1rem;
     min-height: 100vh;
@@ -46,22 +42,32 @@ ol li {
     padding: 1rem;
 }
 
-.main-photo {
-    grid-area: main-photo;
+.counter {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
 }
 
-.recipe-container {
-    grid-area: recipe;
+.message {
+    text-align: center;
+    margin-top: 5px;
+}
+
+span {
+    display: inline-block;
+    padding: 10px 10px 6px;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+    margin: 5px 5px;
 }
 
 /* Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) {
-    .container {
+    body {
         margin: 10px auto;
         max-width: 980px;
-        grid-template-areas: "recipe main-photo";
-        grid-template-columns: 8fr 4fr;
-        grid-template-rows: 1fr;
         padding: 2rem;
     }
 }
