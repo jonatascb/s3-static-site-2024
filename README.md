@@ -1,1 +1,1 @@
-# s3-static-app
+# s3-static-site
