@@ -21,12 +21,12 @@ def lambda_handler(event, context):
         else:
             return {
                 'statusCode': 404,
-                'body': {'error': 'Item not found'},
+                'body': { 'error': 'Item not found' },
                 'headers': { 'Content-Type': 'application/json' }
             }
     except Exception as e:
         return {
             'statusCode': 500,
             'headers': { 'Content-Type': 'application/json' },
-            'body': {'error': str(e)}
+            'body': { 'error': str(e) }
         }
