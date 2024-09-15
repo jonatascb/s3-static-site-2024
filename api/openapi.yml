@@ -26,6 +26,8 @@ paths:
           description: Recipe not found
         500:
           description: Internal server error
+      security:
+        - ApiKeyAuth: []
     put:
       summary: Update a recipe
       operationId: updateRecipe
@@ -45,6 +47,8 @@ paths:
                 $ref: '#/components/schemas/Recipe'
         500:
           description: Internal server error
+      security:
+        - ApiKeyAuth: []
 servers:
   - description: SwaggerHub API Auto Mocking
     url: https://virtserver.swaggerhub.com/jonatascb/recipes-api/1.0.0
@@ -57,3 +61,8 @@ components:
           type: string
         visitsCounter:
           type: integer
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
