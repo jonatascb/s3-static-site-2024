@@ -28,9 +28,8 @@ class TestUpdateItem(unittest.TestCase):
         response = lambda_handler(event, context)
 
         # Assert
-        self.assertEqual(response['statusCode'], 200)
-        self.assertIn('VisitsCounter', response['body'])
-        self.assertEqual(response['body']['VisitsCounter'], 1)
+        self.assertIn('VisitsCounter', response['value'])
+        self.assertEqual(response['value']['VisitsCounter'], 1)
 
     @mock_aws
     def test_lambda_handler_non_existent_recipe_id(self):
@@ -55,8 +54,7 @@ class TestUpdateItem(unittest.TestCase):
         response = lambda_handler(event, context)
 
         # Assert
-        self.assertEqual(response['statusCode'], 500)
-        self.assertIn('error', response['body'])
+        self.assertIn('message', response['error'])
 
 if __name__ == '__main__':
     unittest.main()

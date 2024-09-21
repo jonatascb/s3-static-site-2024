@@ -27,9 +27,8 @@ class TestGetItem(unittest.TestCase):
         response = lambda_handler(event, context)
 
         # Assert
-        self.assertEqual(response['statusCode'], 200)
-        self.assertIn('body', response)
-        self.assertEqual(response['body']['RecipeID'], 'sample_recipe_id')
+        self.assertIn('value', response)
+        self.assertEqual(response['value']['RecipeID'], 'sample_recipe_id')
 
     @mock_aws
     def test_lambda_handler_item_not_found(self):
@@ -53,9 +52,8 @@ class TestGetItem(unittest.TestCase):
         response = lambda_handler(event, context)
 
         # Assert
-        self.assertEqual(response['statusCode'], 404)
-        self.assertIn('body', response)
-        self.assertEqual(response['body']['error'], 'Item not found')
+        self.assertIn('error', response)
+        self.assertEqual(response['error']['message'], 'Item not found')
 
 if __name__ == '__main__':
     unittest.main()

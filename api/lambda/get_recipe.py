@@ -13,19 +13,13 @@ def lambda_handler(event, context):
         )
         if 'Item' in response:
             return {
-                'statusCode': 200,
-                'body': response['Item'],
-                'headers': { 'Content-Type': 'application/json' }
+                'value': response['Item'],
             }
         else:
             return {
-                'statusCode': 404,
-                'body': { 'error': 'Item not found' },
-                'headers': { 'Content-Type': 'application/json' }
+                'error': { 'message': 'Item not found' },
             }
     except Exception as e:
         return {
-            'statusCode': 500,
-            'headers': { 'Content-Type': 'application/json' },
-            'body': { 'error': str(e) }
+            'error': { 'message': str(e) }
         }

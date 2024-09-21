@@ -13,13 +13,9 @@ def lambda_handler(event, context):
             ReturnValues="UPDATED_NEW"
         )
         return {
-            'statusCode': 200,
-            'headers': { 'Content-Type': 'application/json' },
-            'body': response['Attributes']
+            'value': response['Attributes']
         }
     except Exception as e:
         return {
-            'statusCode': 500,
-            'headers': { 'Content-Type': 'application/json' },
-            'body': { 'error': str(e) }
+            'error': { 'message': str(e) }
         }
