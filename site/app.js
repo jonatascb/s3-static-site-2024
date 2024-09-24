@@ -1,23 +1,26 @@
-const visitorCounterDigits = 6;
-
-const init = () => {
-    const updatedVisitCounter = getUpdatedVisitCounter();
+const init = async () => {
+    const updatedVisitCounter = await getUpdatedVisitCounter();
     const spanElements = getSpanElements(updatedVisitCounter);
     const counterElement = document.querySelector('.counter');
-    if (counterElement) {
-        counterElement.innerHTML = spanElements;
-    }
+    counterElement.innerHTML = spanElements;
 };
 
-const getUpdatedVisitCounter = () => {
-    const visitCounter = Number(localStorage.getItem('visitCounter')) + 1;
-    localStorage.setItem('visitCounter', visitCounter);
-    return visitCounter;
-}
+const getUpdatedVisitCounter = async () => {
+    const response = await fetch(`https://api.recipes.jonatascb.com/recipes/${recipeID}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': `${apiKey}`
+        },
+    });
+    const data = await response.json();
+    return data.value.VisitsCounter;
+};
 
 const getSpanElements = (visitCounter) => {
-    const visitCountStr = visitCounter.toString().padStart(visitorCounterDigits, '0');
-    const spanElements = visitCountStr.split('').map(digit => `<span>${digit}</span>`).join(' ');
+    const visitorCounterDigits = 6;
+    const formattedVisitCounter = visitCounter.toString().padStart(visitorCounterDigits, '0');
+    const spanElements = formattedVisitCounter.split('').map(digit => `<span>${digit}</span>`).join(' ');
     return spanElements;
 }
 
