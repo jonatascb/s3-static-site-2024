@@ -43,11 +43,11 @@ workspace {
                 }
             }
 
-            route53 -> cloudfront "Forwards requests to" "HTTPS"
-            route53 -> apigateway "Forwards requests to" "HTTPS"
-            cloudfront -> s3 "Forwards requests to" "HTTPS"
-            apigateway -> lambda "Forwards requests to" "HTTPS"
-            lambda -> dynamodb "Reads from and writes to"
+            route53 -> cloudfront "Routes requests to" "HTTPS"
+            route53 -> apigateway "Routes requests to" "HTTPS"
+            cloudfront -> s3 "Caches content from" "HTTP"
+            apigateway -> lambda "Proxies requests to" "HTTP"
+            lambda -> dynamodb "Reads from and writes to" "HTTP"
         }
     }
 
